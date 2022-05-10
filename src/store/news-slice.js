@@ -5,7 +5,8 @@ const newsSlice = createSlice({
     initialState: {
         ids: [],
         story: {},
-        comments: []
+        comments: [],
+        isLoading: false
     },
     reducers: {
         loadNewsIds(state, action) {
@@ -13,6 +14,7 @@ const newsSlice = createSlice({
         },
         loadStories(state, action) {
             state.story = action.payload;
+            state.isLoading = true;
         },
         loadComments(state, action) {
             state.comments = action.payload;
