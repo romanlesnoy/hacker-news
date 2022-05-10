@@ -1,24 +1,22 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
-import { fetchNewsIds, fetchNewsStories } from "./store/news-actions";
+import { fetchNews } from "./store/news-actions";
+import Header from "./component/Header";
+import MainPage from "./component/MainPage";
 
 function App() {
     const dispatch = useDispatch();
-    const ids = useSelector((state) => state.news.ids);
 
     useEffect(() => {
-        dispatch(fetchNewsIds());
-    }, [dispatch]);
-
-    useEffect(() => {
-        dispatch(fetchNewsStories(ids));
+        dispatch(fetchNews());
     }, [dispatch]);
 
     return (
-        <div className="App">
-            <header className="App-header"></header>
-        </div>
+        <React.Fragment>
+            <Header />
+            <MainPage />
+        </React.Fragment>
     );
 }
 
