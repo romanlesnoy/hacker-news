@@ -1,10 +1,84 @@
+@import url(./styles/normalize.css);
+
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("./styles/fonts/Inter-Medium.woff2"),
+        url("./styles/fonts/Inter-Medium.woff2");
+}
+
 * {
     box-sizing: border-box;
 }
 
+html,
 body {
     margin: 0;
-    background-color: #3f3f3f;
-    font-family: "Inter", "Helvetica", "Arial", sans-serif;
-    color: white;
+    padding: 0;
+    height: 100%;
+    color: #000;
+    background: #fff;
+    font-family: "Inter", Helvetica, sans-serif;
+    min-width: 320px;
+}
+
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+blockquote,
+hr {
+    padding: 0;
+    margin: 0;
+}
+
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+}
+
+button {
+    background-color: transparent;
+    border-radius: 0;
+    border: 0;
+    box-shadow: none;
+    outline: 0;
+    padding: 0;
+    display: block;
+    cursor: inherit;
+    touch-action: manipulation;
+    appearance: none;
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+figure {
+    margin: 0;
+}
+
+input,
+textarea {
+    display: block;
+    outline: 0;
+    box-shadow: none;
+    border: 0;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
 }
