@@ -23,7 +23,9 @@ function App() {
                     <MainPage />
                 </Route>
 
-                <Route path="/:id" exact component={ArticlePage} />
+                <Route exact path="/article/:id">
+                    <ArticlePage />
+                </Route>
 
                 <Route path="*">
                     <NotFound />
