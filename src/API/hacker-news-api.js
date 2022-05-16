@@ -13,6 +13,5 @@ export const getStoriesIds = async () => {
 };
 
 export const getStory = (id) => {
-    console.log(id);
     return fetch(`${baseUrl}/item/${id}.json`).then(response);
 };

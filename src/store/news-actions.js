@@ -16,7 +16,7 @@ export const fetchNews = () => {
             const data = await Promise.all(
                 newsIdsSlice.map((id) => getStory(id))
             );
-            dispatch(newsActions.loadStories(data || []));
+            dispatch(newsActions.loadStories(data));
         } catch (error) {
             dispatch(
                 errorActions.showError({
