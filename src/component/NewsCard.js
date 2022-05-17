@@ -2,20 +2,22 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
+import styles from "./NewsCard.module.css";
+
 const NewsCard = (props) => {
-    const { title, rating, author, url, date, id } = props;
+    const { title, score, author, date, id } = props;
     const newDate = new Date(date * 1000);
 
     return (
-        <li>
-            <Link to={`/article/${id}`}>Link</Link>
-            <article>
-                <h2>{title}</h2>
-                <p>by {author}</p>
-                <p>{rating}</p>
-                <p>{newDate.toDateString()}</p>
-                {url && <Link to={url}>Link</Link>}
-            </article>
+        <li className={styles.card}>
+            <Link to={`/article/${id}`}>
+                <article className={styles.article}>
+                    <p>by {author}</p>
+                    <h2 className={styles.title}>{title}</h2>
+                    <time>{newDate.toDateString()}</time>
+                    <p>Rating: {score}</p>
+                </article>
+            </Link>
         </li>
     );
 };
@@ -23,10 +25,9 @@ const NewsCard = (props) => {
 NewsCard.propTypes = {
     id: PropTypes.number,
     title: PropTypes.string,
-    rating: PropTypes.number,
+    score: PropTypes.number,
     author: PropTypes.string,
-    date: PropTypes.number,
-    url: PropTypes.string
+    date: PropTypes.number
 };
 
 export default NewsCard;

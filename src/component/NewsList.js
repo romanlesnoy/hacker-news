@@ -2,6 +2,7 @@ import React from "react";
 
 import NewsCard from "./NewsCard";
 import { useSelector } from "react-redux";
+import styles from "./NewsList.module.css";
 
 const NewsList = () => {
     const stories = useSelector((state) => state.news.news);
@@ -10,17 +11,16 @@ const NewsList = () => {
     return (
         <React.Fragment>
             {isLoading && <p>Loading...</p>}
-            <ul>
+            <ul className={styles.cardList}>
                 {!isLoading &&
                     stories.map((story) => (
                         <NewsCard
                             key={story.id}
                             id={story.id}
                             title={story.title}
-                            rating={story.score}
+                            score={story.score}
                             author={story.by}
                             date={story.time}
-                            url={story.url}
                         />
                     ))}
             </ul>
