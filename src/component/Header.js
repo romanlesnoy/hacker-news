@@ -1,10 +1,12 @@
 import React from "react";
 
+import styles from "./Header.module.css";
+
 const Header = () => {
     return (
-        <header>
-            <h1>Hacker News</h1>
-            <button>Update</button>
+        <header className={styles.header}>
+            <h1 className={styles.title}>Hacker News</h1>
+            <button className={styles.button}>Update</button>
         </header>
     );
 };
