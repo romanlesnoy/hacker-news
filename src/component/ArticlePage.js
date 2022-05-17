@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 
 import { newsActions } from "../store/news-slice";
 import Article from "./Article";
+import styles from "./ArticlePage.module.css";
 
 const ArticlePage = () => {
     const { id } = useParams();
@@ -21,8 +22,8 @@ const ArticlePage = () => {
 
     return (
         <React.Fragment>
-            <header>
-                <button> Back </button>
+            <header className={styles.header}>
+                <button className={styles.button}> Back </button>
             </header>
             <main>
                 {hasArticle && <Article />}
