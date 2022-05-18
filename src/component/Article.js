@@ -12,6 +12,7 @@ const Article = () => {
             <p>by {article.by}</p>
             <p>{article.rating}</p>
             <p>{newDate.toString()}</p>
+            {article.text && <p>{article.text}</p>}
             {article.url && <a href={article.url}>Link</a>}
         </article>
     );

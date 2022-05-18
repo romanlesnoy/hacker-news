@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import { newsActions } from "../store/news-slice";
+import { fetchStory } from "../store/news-actions";
 import Article from "./Article";
 import styles from "./ArticlePage.module.css";
 
@@ -12,13 +13,16 @@ const ArticlePage = () => {
     const dispatch = useDispatch();
     const stories = useSelector((state) => state.news.news);
     const hasArticle = useSelector((state) => state.news.hasArticle);
+    const isLoading = useSelector((state) => state.news.isLoading);
     const findStory = stories.find((item) => item.id === Number(id));
 
     useEffect(() => {
         if (findStory) {
             dispatch(newsActions.addArticle(findStory));
+        } else {
+            dispatch(fetchStory(id));
         }
-    }, [findStory, dispatch]);
+    }, [findStory, dispatch, id]);
 
     return (
         <React.Fragment>
@@ -26,8 +30,13 @@ const ArticlePage = () => {
                 <button className={styles.button}> Back </button>
             </header>
             <main>
-                {hasArticle && <Article />}
-                <p>Comment section</p>
+                {isLoading && !hasArticle && <p>Loading ...</p>}
+                {!isLoading && hasArticle && (
+                    <div>
+                        <Article />
+                        <p>Comment section</p>
+                    </div>
+                )}
             </main>
         </React.Fragment>
     );

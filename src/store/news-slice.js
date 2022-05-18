@@ -19,6 +19,12 @@ const newsSlice = createSlice({
             state.isLoading = false;
             console.log(action.payload, "Load stories");
         },
+        loadArticle(state, action) {
+            state.hasArticle = true;
+            state.isLoading = false;
+            state.article = action.payload;
+            console.log(action.payload, "Load article");
+        },
         loadComments(state, action) {
             state.comments = action.payload;
         },
