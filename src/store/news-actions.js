@@ -4,7 +4,7 @@ import { errorActions } from "./error-slice";
 import { getStoriesIds, getStory } from "../api/hacker-news-api";
 
 const startIndex = 0;
-const endIndex = 10;
+const endIndex = 99;
 
 const getSlice = (array, start = 0, end = 2) => {
     const slice = array.slice(start, end);
@@ -14,11 +14,14 @@ const getSlice = (array, start = 0, end = 2) => {
 export const fetchNews = () => {
     return async (dispatch) => {
         try {
+            dispatch(newsActions.resetNews());
+
             const newsIds = await getStoriesIds();
             const newsIdsSlice = getSlice(newsIds, startIndex, endIndex);
             const data = await Promise.all(
                 newsIdsSlice.map((id) => getStory(id))
             );
+
             dispatch(newsActions.loadStories(data));
         } catch (error) {
             dispatch(

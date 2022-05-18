@@ -32,6 +32,10 @@ const newsSlice = createSlice({
             state.article = action.payload;
             state.hasArticle = true;
             console.log(action.payload, "Add story");
+        },
+        resetNews(state) {
+            state.news = [];
+            state.isLoading = true;
         }
     }
 });
