@@ -9,11 +9,21 @@ import ArticlePage from "./component/ArticlePage";
 import NotFound from "./component/NotFound";
 import { Switch } from "react-router-dom";
 
+let isInitial = true;
+
 function App() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchNews());
+        if (isInitial) {
+            dispatch(fetchNews());
+            isInitial = false;
+        }
+        const interval = setInterval(() => {
+            dispatch(fetchNews());
+        }, 60000);
+
+        return () => clearInterval(interval);
     }, [dispatch]);
 
     return (
