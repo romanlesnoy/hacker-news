@@ -21,6 +21,7 @@ const NewsList = () => {
                             score={story.score}
                             author={story.by}
                             date={story.time}
+                            comments={story.kids}
                         />
                     ))}
             </ul>
