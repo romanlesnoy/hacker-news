@@ -3,10 +3,11 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
+import styles from "./ArticlePage.module.css";
+import Article from "./Article";
+import Preloader from "./Preloader";
 import { newsActions } from "../store/news-slice";
 import { fetchStory } from "../store/news-actions";
-import Article from "./Article";
-import styles from "./ArticlePage.module.css";
 
 const ArticlePage = () => {
     const { id } = useParams();
@@ -30,7 +31,7 @@ const ArticlePage = () => {
                 <button className={styles.button}> Back </button>
             </header>
             <main>
-                {isLoading && !hasArticle && <p>Loading ...</p>}
+                {isLoading && !hasArticle && <Preloader />}
                 {!isLoading && hasArticle && (
                     <div>
                         <Article />

@@ -1,19 +1,31 @@
 import React from "react";
-
-import NewsCard from "./NewsCard";
 import { useSelector } from "react-redux";
+
 import styles from "./NewsList.module.css";
+import NewsCard from "./NewsCard";
+import Preloader from "./Preloader";
+
+const sortByDate = (a, b) => {
+    if (a.time < b.time) {
+        return 1;
+    }
+    if (a.time > b.time) {
+        return -1;
+    }
+    return 0;
+};
 
 const NewsList = () => {
     const stories = useSelector((state) => state.news.news);
     const isLoading = useSelector((state) => state.news.isLoading);
+    const cards = stories.filter((item) => item !== null).sort(sortByDate);
 
     return (
         <React.Fragment>
-            {isLoading && <p>Loading...</p>}
+            {isLoading && <Preloader />}
             <ul className={styles.cardList}>
                 {!isLoading &&
-                    stories.map((story) => (
+                    cards.map((story) => (
                         <NewsCard
                             key={story.id}
                             id={story.id}
