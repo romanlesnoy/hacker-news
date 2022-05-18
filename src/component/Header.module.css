@@ -7,16 +7,3 @@
 .title {
     padding: 40px 0;
 }
-
-.button {
-    font-size: 14px;
-    line-height: 1.2;
-    font-weight: 400;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    cursor: pointer;
-    padding: 10px 30px;
-    border-radius: 100px;
-    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
