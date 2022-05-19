@@ -1,7 +1,7 @@
 import { newsActions } from "./news-slice";
 import { errorActions } from "./error-slice";
 
-import { getStoriesIds, getStory } from "../api/hacker-news-api";
+import { getStoriesIds, getData } from "../api/hacker-news-api";
 
 const startIndex = 0;
 const endIndex = 99;
@@ -19,7 +19,7 @@ export const fetchNews = () => {
             const newsIds = await getStoriesIds();
             const newsIdsSlice = getSlice(newsIds, startIndex, endIndex);
             const data = await Promise.all(
-                newsIdsSlice.map((id) => getStory(id))
+                newsIdsSlice.map((id) => getData(id))
             );
 
             dispatch(newsActions.loadStories(data));
@@ -28,7 +28,7 @@ export const fetchNews = () => {
                 errorActions.showError({
                     status: "error",
                     title: "Error!",
-                    message: "Fetching news IDs failed!"
+                    message: "Fetching news failed!"
                 })
             );
         }
@@ -38,14 +38,31 @@ export const fetchNews = () => {
 export const fetchStory = (id) => {
     return async (dispatch) => {
         try {
-            const data = await getStory(id);
+            const data = await getData(id);
             dispatch(newsActions.loadArticle(data));
         } catch (error) {
             dispatch(
                 errorActions.showError({
                     status: "error",
                     title: "Error!",
-                    message: "Fetching news IDs failed!"
+                    message: "Fetching article failed!"
+                })
+            );
+        }
+    };
+};
+
+export const fetchComments = (ids) => {
+    return async (dispatch) => {
+        try {
+            const data = await Promise.all(ids.map((id) => getData(id)));
+            dispatch(newsActions.loadComments(data));
+        } catch (error) {
+            dispatch(
+                errorActions.showError({
+                    status: "error",
+                    title: "Error!",
+                    message: "Fetching comments failed!"
                 })
             );
         }

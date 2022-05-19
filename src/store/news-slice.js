@@ -8,7 +8,8 @@ const newsSlice = createSlice({
         article: null,
         comments: [],
         isLoading: true,
-        hasArticle: false
+        hasArticle: false,
+        hasComments: false
     },
     reducers: {
         loadNewsIds(state, action) {
@@ -17,21 +18,23 @@ const newsSlice = createSlice({
         loadStories(state, action) {
             state.news = action.payload;
             state.isLoading = false;
-            console.log(action.payload, "Load stories");
+            // console.log(action.payload, "Load stories");
         },
         loadArticle(state, action) {
             state.hasArticle = true;
             state.isLoading = false;
             state.article = action.payload;
-            console.log(action.payload, "Load article");
+            // console.log(action.payload, "Load article");
         },
         loadComments(state, action) {
             state.comments = action.payload;
+            state.hasComments = true;
+            // console.log(action.payload, "Load comments");
         },
         addArticle(state, action) {
             state.article = action.payload;
             state.hasArticle = true;
-            console.log(action.payload, "Add story");
+            // console.log(action.payload, "Add story");
         },
         resetNews(state) {
             state.news = [];

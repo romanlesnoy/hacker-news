@@ -12,6 +12,6 @@ export const getStoriesIds = async () => {
     return fetch(newStoriesUrl).then(response);
 };
 
-export const getStory = (id) => {
+export const getData = (id) => {
     return fetch(`${baseUrl}/item/${id}.json`).then(response);
 };
