@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 
 import styles from "./ArticlePage.module.css";
 import Article from "./Article";
+import CommentsList from "./CommentsList";
 import Preloader from "./Preloader";
 import Button from "./Button";
 import { newsActions } from "../store/news-slice";
@@ -37,7 +38,8 @@ const ArticlePage = () => {
                 {!isLoading && hasArticle && (
                     <div>
                         <Article />
-                        <p>Comment section</p>
+
+                        <CommentsList />
                     </div>
                 )}
             </main>
