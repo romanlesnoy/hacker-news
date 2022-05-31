@@ -21,7 +21,6 @@ export const fetchNews = () => {
             const data = await Promise.all(
                 newsIdsSlice.map((id) => getData(id))
             );
-
             dispatch(newsActions.loadStories(data));
         } catch (error) {
             dispatch(
@@ -38,6 +37,8 @@ export const fetchNews = () => {
 export const fetchStory = (id) => {
     return async (dispatch) => {
         try {
+            dispatch(newsActions.resetArticle());
+
             const data = await getData(id);
             dispatch(newsActions.loadArticle(data));
         } catch (error) {
@@ -58,6 +59,24 @@ export const fetchComments = (ids) => {
             const data = await Promise.all(ids.map((id) => getData(id)));
             dispatch(newsActions.loadComments(data));
         } catch (error) {
+            dispatch(
+                errorActions.showError({
+                    status: "error",
+                    title: "Error!",
+                    message: "Fetching comments failed!"
+                })
+            );
+        }
+    };
+};
+
+export const fetchSubComments = (kidsIds) => {
+    return async (dispatch) => {
+        try {
+            const data = await Promise.all(kidsIds.map((id) => getData(id)));
+            data.forEach((item) => dispatch(newsActions.loadSubComments(item)));
+        } catch (error) {
+            console.log(error);
             dispatch(
                 errorActions.showError({
                     status: "error",
