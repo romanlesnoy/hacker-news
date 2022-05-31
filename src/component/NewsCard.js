@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import styles from "./NewsCard.module.css";
 
 const NewsCard = (props) => {
-    const { title, score, author, date, id, comments } = props;
+    const { title, score, author, date, id, descendants } = props;
     const newDate = new Date(date * 1000);
 
     return (
@@ -16,7 +16,7 @@ const NewsCard = (props) => {
                     <h2 className={styles.title}>{title}</h2>
                     <time>{newDate.toDateString()}</time>
                     <p>Rating: {score}</p>
-                    {comments && <p>Comments: {comments.length}</p>}
+                    {descendants ? <p>Comments: {descendants}</p> : null}
                 </article>
             </Link>
         </li>
@@ -29,7 +29,7 @@ NewsCard.propTypes = {
     score: PropTypes.number,
     author: PropTypes.string,
     date: PropTypes.number,
-    comments: PropTypes.array
+    descendants: PropTypes.number
 };
 
 export default NewsCard;
