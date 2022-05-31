@@ -17,17 +17,17 @@ const ArticlePage = () => {
     const { id } = useParams();
 
     const dispatch = useDispatch();
-    const stories = useSelector((state) => state.news.news);
-    const hasArticle = useSelector((state) => state.news.hasArticle);
     const isLoading = useSelector((state) => state.news.isLoading);
-
+    const stories = useSelector((state) => state.news.news);
     const findStory = stories.find((item) => item.id === Number(id));
+
     const article = useSelector((state) => state.news.article);
     const comments = useSelector((state) => state.news.comments);
+    const hasArticle = useSelector((state) => state.news.hasArticle);
 
     useEffect(() => {
         if (findStory) {
-            dispatch(newsActions.addArticle(findStory));
+            dispatch(newsActions.loadArticle(findStory));
         } else {
             dispatch(fetchStory(id));
         }
@@ -44,13 +44,19 @@ const ArticlePage = () => {
             <header className={styles.header}>
                 <Button onClick={() => history.goBack()} text={"Back"} />
             </header>
+
             <main>
                 {isLoading && !hasArticle && <Preloader />}
+
                 {!isLoading && hasArticle && (
                     <div>
                         {article && <Article article={article} />}
-                        {!article.kids && <p>No comments</p>}
-                        {article.kids && <CommentsList comments={comments} />}
+
+                        {article.kids ? (
+                            <CommentsList comments={comments} />
+                        ) : (
+                            <p>No comments</p>
+                        )}
                     </div>
                 )}
             </main>

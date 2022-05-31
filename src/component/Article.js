@@ -1,9 +1,7 @@
 import React from "react";
-// import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 
 const Article = ({ article }) => {
-    // const article = useSelector((state) => state.news.article);
     const newDate = new Date(article.time * 1000);
 
     return (
