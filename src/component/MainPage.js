@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchNews } from "../store/news-actions";
+import { newsActions } from "../store/news-slice";
 
 import Header from "./Header";
 import NewsList from "./NewsList";
@@ -15,9 +16,12 @@ const MainPage = () => {
             dispatch(fetchNews());
             isInitial = false;
         }
+
         const interval = setInterval(() => {
             dispatch(fetchNews());
         }, 60000);
+
+        dispatch(newsActions.resetArticle());
 
         return () => clearInterval(interval);
     }, [dispatch]);

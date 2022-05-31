@@ -5,11 +5,13 @@ const newsSlice = createSlice({
     initialState: {
         ids: [],
         news: [],
-        article: null,
+        article: {},
         comments: [],
+        subComments: [],
         isLoading: true,
         hasArticle: false,
-        hasComments: false
+        hasComments: false,
+        hasSubComments: false
     },
     reducers: {
         loadNewsIds(state, action) {
@@ -18,27 +20,33 @@ const newsSlice = createSlice({
         loadStories(state, action) {
             state.news = action.payload;
             state.isLoading = false;
-            // console.log(action.payload, "Load stories");
         },
         loadArticle(state, action) {
+            state.article = action.payload;
             state.hasArticle = true;
             state.isLoading = false;
-            state.article = action.payload;
-            // console.log(action.payload, "Load article");
         },
         loadComments(state, action) {
+            console.log("Передали комментарии в стейт");
             state.comments = action.payload;
             state.hasComments = true;
-            // console.log(action.payload, "Load comments");
         },
-        addArticle(state, action) {
-            state.article = action.payload;
-            state.hasArticle = true;
-            // console.log(action.payload, "Add story");
+        loadSubComments(state, action) {
+            console.log("Передали субкомментари в стейт");
+            state.subComments = [...state.subComments, action.payload];
+            state.hasSubComments = true;
         },
         resetNews(state) {
             state.news = [];
             state.isLoading = true;
+        },
+        resetArticle(state) {
+            state.article = {};
+            state.comments = [];
+            state.subComments = [];
+            state.hasArticle = false;
+            state.hasComments = false;
+            state.hasSubComments = false;
         }
     }
 });
