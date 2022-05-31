@@ -10,15 +10,20 @@ import Preloader from "./Preloader";
 import Button from "./Button";
 import { newsActions } from "../store/news-slice";
 import { fetchStory } from "../store/news-actions";
+import { fetchComments } from "../store/news-actions";
 
 const ArticlePage = () => {
     const history = useHistory();
     const { id } = useParams();
+
     const dispatch = useDispatch();
     const stories = useSelector((state) => state.news.news);
     const hasArticle = useSelector((state) => state.news.hasArticle);
     const isLoading = useSelector((state) => state.news.isLoading);
+
     const findStory = stories.find((item) => item.id === Number(id));
+    const article = useSelector((state) => state.news.article);
+    const comments = useSelector((state) => state.news.comments);
 
     useEffect(() => {
         if (findStory) {
@@ -27,6 +32,12 @@ const ArticlePage = () => {
             dispatch(fetchStory(id));
         }
     }, [findStory, dispatch, id]);
+
+    useEffect(() => {
+        if (article.kids) {
+            dispatch(fetchComments(article.kids));
+        }
+    }, [dispatch, article.kids]);
 
     return (
         <React.Fragment>
@@ -37,9 +48,9 @@ const ArticlePage = () => {
                 {isLoading && !hasArticle && <Preloader />}
                 {!isLoading && hasArticle && (
                     <div>
-                        <Article />
-
-                        <CommentsList />
+                        {article && <Article article={article} />}
+                        {!article.kids && <p>No comments</p>}
+                        {article.kids && <CommentsList comments={comments} />}
                     </div>
                 )}
             </main>

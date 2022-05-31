@@ -1,8 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
+import PropTypes from "prop-types";
 
-const Article = () => {
-    const article = useSelector((state) => state.news.article);
+const Article = ({ article }) => {
+    // const article = useSelector((state) => state.news.article);
     const newDate = new Date(article.time * 1000);
 
     return (
@@ -15,6 +16,17 @@ const Article = () => {
             {article.url && <a href={article.url}>Link</a>}
         </article>
     );
+};
+
+Article.propTypes = {
+    article: PropTypes.object,
+    id: PropTypes.number,
+    title: PropTypes.string,
+    rating: PropTypes.number,
+    by: PropTypes.string,
+    text: PropTypes.string,
+    time: PropTypes.number,
+    comments: PropTypes.array
 };
 
 export default Article;
