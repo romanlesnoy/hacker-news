@@ -10,7 +10,9 @@ const Article = ({ article }) => {
             <p>by {article.by}</p>
             <p>{article.rating}</p>
             <p>{newDate.toString()}</p>
-            {article.text && <p>{article.text}</p>}
+            {article.text && (
+                <div dangerouslySetInnerHTML={{ __html: article.text }} />
+            )}
             {article.url && <a href={article.url}>Link</a>}
         </article>
     );

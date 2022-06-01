@@ -24,6 +24,7 @@ const ArticlePage = () => {
     const article = useSelector((state) => state.news.article);
     const comments = useSelector((state) => state.news.comments);
     const hasArticle = useSelector((state) => state.news.hasArticle);
+    const hasComments = useSelector((state) => state.news.hasComments);
 
     const updateComments = () => {
         dispatch(fetchComments(article.kids));
@@ -62,7 +63,10 @@ const ArticlePage = () => {
                                     onClick={updateComments}
                                     text={"Update comments"}
                                 />
-                                <CommentsList comments={comments} />
+                                {!hasComments && <Preloader />}
+                                {hasComments && (
+                                    <CommentsList comments={comments} />
+                                )}
                             </>
                         ) : (
                             <p>No comments</p>
