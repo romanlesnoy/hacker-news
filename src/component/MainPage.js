@@ -12,7 +12,6 @@ let isInitial = true;
 const MainPage = () => {
     const dispatch = useDispatch();
     const notification = useSelector((state) => state.error.notification);
-    console.log(notification);
 
     useEffect(() => {
         if (isInitial) {

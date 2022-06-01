@@ -4,16 +4,7 @@ import { useSelector } from "react-redux";
 import styles from "./NewsList.module.css";
 import NewsCard from "./NewsCard";
 import Preloader from "./Preloader";
-
-const sortByDate = (a, b) => {
-    if (a.time < b.time) {
-        return 1;
-    }
-    if (a.time > b.time) {
-        return -1;
-    }
-    return 0;
-};
+import sortByDate from "../helpers/sortByDate";
 
 const NewsList = () => {
     const stories = useSelector((state) => state.news.news);
