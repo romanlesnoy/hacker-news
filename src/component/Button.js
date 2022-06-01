@@ -7,6 +7,7 @@ const Button = (props) => {
     return (
         <button
             type={props.type || "button"}
+            role={props.type || "none"}
             className={styles.button}
             onClick={props.onClick}
         >

@@ -15,7 +15,7 @@ const Header = () => {
     return (
         <header className={styles.header}>
             <h1 className={styles.title}>Hacker News</h1>
-            <Button onClick={updateNews} text="Update" />
+            <Button onClick={updateNews} text="Update" role={"link"} />
         </header>
     );
 };

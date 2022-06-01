@@ -1,6 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
+import Button from "./Button";
+
 function NotFound() {
     const history = useHistory();
 
@@ -8,9 +10,11 @@ function NotFound() {
         <div>
             <h1>404</h1>
             <p>Страница не найдена</p>
-            <button type="button" role="link" onClick={() => history.goBack()}>
-                Назад
-            </button>
+            <Button
+                role="link"
+                text={"back"}
+                onClick={() => history.goBack()}
+            />
         </div>
     );
 }
