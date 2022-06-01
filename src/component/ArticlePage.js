@@ -8,6 +8,7 @@ import Article from "./Article";
 import CommentsList from "./CommentsList";
 import Preloader from "./Preloader";
 import Button from "./Button";
+import ErrorNotification from "./ErrorNotification";
 import { newsActions } from "../store/news-slice";
 import { fetchStory } from "../store/news-actions";
 import { fetchComments } from "../store/news-actions";
@@ -25,6 +26,7 @@ const ArticlePage = () => {
     const comments = useSelector((state) => state.news.comments);
     const hasArticle = useSelector((state) => state.news.hasArticle);
     const hasComments = useSelector((state) => state.news.hasComments);
+    const notification = useSelector((state) => state.error.notification);
 
     const updateComments = () => {
         dispatch(fetchComments(article.kids));
@@ -52,6 +54,14 @@ const ArticlePage = () => {
 
             <main>
                 {isLoading && !hasArticle && <Preloader />}
+
+                {notification && (
+                    <ErrorNotification
+                        status={notification.status}
+                        title={notification.title}
+                        message={notification.message}
+                    />
+                )}
 
                 {!isLoading && hasArticle && (
                     <div>
