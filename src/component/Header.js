@@ -10,7 +10,6 @@ const Header = () => {
 
     const updateNews = () => {
         dispatch(fetchNews());
-        console.log("CLICK");
     };
 
     return (

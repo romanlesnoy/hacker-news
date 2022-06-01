@@ -27,12 +27,10 @@ const newsSlice = createSlice({
             state.isLoading = false;
         },
         loadComments(state, action) {
-            console.log("Передали комментарии в стейт");
             state.comments = action.payload;
             state.hasComments = true;
         },
         loadSubComments(state, action) {
-            console.log("Передали субкомментари в стейт");
             state.subComments = [...state.subComments, action.payload];
             state.hasSubComments = true;
         },
@@ -45,6 +43,12 @@ const newsSlice = createSlice({
             state.comments = [];
             state.subComments = [];
             state.hasArticle = false;
+            state.hasComments = false;
+            state.hasSubComments = false;
+        },
+        resetComments(state) {
+            state.comments = [];
+            state.subComments = [];
             state.hasComments = false;
             state.hasSubComments = false;
         }

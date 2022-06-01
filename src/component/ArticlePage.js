@@ -25,6 +25,10 @@ const ArticlePage = () => {
     const comments = useSelector((state) => state.news.comments);
     const hasArticle = useSelector((state) => state.news.hasArticle);
 
+    const updateComments = () => {
+        dispatch(fetchComments(article.kids));
+    };
+
     useEffect(() => {
         if (findStory) {
             dispatch(newsActions.loadArticle(findStory));
@@ -53,7 +57,13 @@ const ArticlePage = () => {
                         {article && <Article article={article} />}
 
                         {article.kids ? (
-                            <CommentsList comments={comments} />
+                            <>
+                                <Button
+                                    onClick={updateComments}
+                                    text={"Update comments"}
+                                />
+                                <CommentsList comments={comments} />
+                            </>
                         ) : (
                             <p>No comments</p>
                         )}

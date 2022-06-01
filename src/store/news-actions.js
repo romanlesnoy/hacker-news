@@ -56,6 +56,8 @@ export const fetchStory = (id) => {
 export const fetchComments = (ids) => {
     return async (dispatch) => {
         try {
+            dispatch(newsActions.resetComments());
+
             const data = await Promise.all(ids.map((id) => getData(id)));
             dispatch(newsActions.loadComments(data));
         } catch (error) {
@@ -76,7 +78,6 @@ export const fetchSubComments = (kidsIds) => {
             const data = await Promise.all(kidsIds.map((id) => getData(id)));
             data.forEach((item) => dispatch(newsActions.loadSubComments(item)));
         } catch (error) {
-            console.log(error);
             dispatch(
                 errorActions.showError({
                     status: "error",
