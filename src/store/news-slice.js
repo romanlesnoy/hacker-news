@@ -3,7 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 const newsSlice = createSlice({
     name: "news",
     initialState: {
-        ids: [],
         news: [],
         article: {},
         comments: [],
@@ -14,9 +13,6 @@ const newsSlice = createSlice({
         hasSubComments: false
     },
     reducers: {
-        loadNewsIds(state, action) {
-            state.ids = action.payload;
-        },
         loadStories(state, action) {
             state.news = action.payload;
             state.isLoading = false;
