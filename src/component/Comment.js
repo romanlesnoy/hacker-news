@@ -5,10 +5,11 @@ import { useSelector } from "react-redux";
 
 import { fetchSubComments } from "../store/news-actions";
 import CommentsList from "./CommentsList";
+import dateConverter from "../helpers/dateConverter";
 
 const Comment = ({ item }) => {
     const { by, id, kids, parent, text, time } = item;
-    const newDate = new Date(time * 1000);
+    const date = dateConverter(time);
 
     const dispatch = useDispatch();
     const subComments = useSelector((state) => state.news.subComments);
@@ -26,7 +27,7 @@ const Comment = ({ item }) => {
         <React.Fragment>
             <article>
                 <p>by {by}</p>
-                <time>{newDate.toDateString()}</time>
+                <time>{date}</time>
                 <div dangerouslySetInnerHTML={{ __html: text }} />
                 <p>id {id}</p>
                 <p>kids: {JSON.stringify(kids)}</p>

@@ -1,32 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import dateConverter from "../helpers/dateConverter";
+
 const Article = ({ article }) => {
-    const newDate = new Date(article.time * 1000);
+    const { title, rating, by, text, time, url } = article;
+    const date = dateConverter(time);
 
     return (
         <article>
-            <h2>{article.title}</h2>
-            <p>by {article.by}</p>
-            <p>{article.rating}</p>
-            <p>{newDate.toString()}</p>
-            {article.text && (
-                <div dangerouslySetInnerHTML={{ __html: article.text }} />
-            )}
-            {article.url && <a href={article.url}>Link</a>}
+            <h2>{title}</h2>
+            <p>by {by}</p>
+            <p>{rating}</p>
+            <p>{date}</p>
+            {text && <div dangerouslySetInnerHTML={{ __html: text }} />}
+            {url && <a href={url}>Link</a>}
         </article>
     );
 };
 
 Article.propTypes = {
     article: PropTypes.object,
-    id: PropTypes.number,
     title: PropTypes.string,
     rating: PropTypes.number,
     by: PropTypes.string,
     text: PropTypes.string,
     time: PropTypes.number,
-    comments: PropTypes.array
+    url: PropTypes.string
 };
 
 export default Article;

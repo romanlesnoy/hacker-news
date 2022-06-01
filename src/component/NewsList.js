@@ -32,7 +32,7 @@ const NewsList = () => {
                             title={story.title}
                             score={story.score}
                             author={story.by}
-                            date={story.time}
+                            time={story.time}
                             descendants={story.descendants}
                         />
                     ))}
