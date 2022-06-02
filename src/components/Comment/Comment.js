@@ -3,12 +3,13 @@ import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
+import styles from "./Comment.module.css";
 import { fetchSubComments } from "../../store/news-actions";
 import CommentsList from "../../components/CommentList/CommentsList";
 import dateConverter from "../../helpers/dateConverter";
 
 const Comment = ({ item }) => {
-    const { by, id, kids, parent, text, time } = item;
+    const { by, id, kids, text, time } = item;
     const date = dateConverter(time);
 
     const dispatch = useDispatch();
@@ -26,12 +27,15 @@ const Comment = ({ item }) => {
     return (
         <React.Fragment>
             <article>
-                <p>by {by}</p>
-                <time>{date}</time>
-                <div dangerouslySetInnerHTML={{ __html: text }} />
-                <p>id {id}</p>
-                <p>kids: {JSON.stringify(kids)}</p>
-                <p>Parent: {parent}</p>
+                <div className={styles.details}>
+                    <span>by {by}</span>&nbsp;|&nbsp;
+                    <time>posted on{date}</time>
+                </div>
+
+                <p
+                    dangerouslySetInnerHTML={{ __html: text }}
+                    className={styles.text}
+                />
             </article>
             {kids && hasSubComments && (
                 <CommentsList comments={filtredSubComments} />

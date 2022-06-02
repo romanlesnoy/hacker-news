@@ -1,7 +1,12 @@
-.comment {
-    padding-left: 25px;
+.details {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    color: #aaa;
+    font-size: 9.5pt;
 }
 
-.commentChildren {
-    margin-left: 10px;
+.text {
+    overflow-wrap: break-word;
 }
