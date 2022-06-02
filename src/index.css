@@ -21,7 +21,14 @@ body {
     color: #000;
     background: #fff;
     font-family: "Inter", Helvetica, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.45em;
     min-width: 320px;
+}
+
+#root {
+    width: 655px;
+    margin: 0 auto;
 }
 
 *::before,

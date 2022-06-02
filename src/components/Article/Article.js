@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import dateConverter from "../helpers/dateConverter";
+import dateConverter from "../../helpers/dateConverter";
 
 const Article = ({ article }) => {
     const { title, rating, by, text, time, url } = article;

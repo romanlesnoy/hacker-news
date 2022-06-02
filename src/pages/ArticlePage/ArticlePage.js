@@ -4,14 +4,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import styles from "./ArticlePage.module.css";
-import Article from "./Article";
-import CommentsList from "./CommentsList";
-import Preloader from "./Preloader";
-import Button from "./Button";
-import ErrorNotification from "./ErrorNotification";
-import { newsActions } from "../store/news-slice";
-import { fetchStory } from "../store/news-actions";
-import { fetchComments } from "../store/news-actions";
+import Article from "../../components/Article/Article";
+import CommentsList from "../../components/CommentList/CommentsList";
+import Preloader from "../../components/Preloader/Preloader";
+import Button from "../../components/Button/Button";
+import ErrorNotification from "../../components/ErrorNotification/ErrorNotification";
+import { newsActions } from "../../store/news-slice";
+import { fetchStory } from "../../store/news-actions";
+import { fetchComments } from "../../store/news-actions";
 
 const ArticlePage = () => {
     const history = useHistory();

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import styles from "./CommentList.module.css";
-import Comment from "./Comment";
+import Comment from "../Comment/Comment";
 
 const CommentsList = ({ comments }) => {
     return (

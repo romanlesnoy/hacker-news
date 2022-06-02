@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import styles from "./NewsCard.module.css";
-import dateConverter from "../helpers/dateConverter";
+import dateConverter from "../../helpers/dateConverter";
 
 const NewsCard = (props) => {
     const { title, score, author, time, id, descendants } = props;

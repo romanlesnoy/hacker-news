@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
-import { fetchSubComments } from "../store/news-actions";
-import CommentsList from "./CommentsList";
-import dateConverter from "../helpers/dateConverter";
+import { fetchSubComments } from "../../store/news-actions";
+import CommentsList from "../../components/CommentList/CommentsList";
+import dateConverter from "../../helpers/dateConverter";
 
 const Comment = ({ item }) => {
     const { by, id, kids, parent, text, time } = item;

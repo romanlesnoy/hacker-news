@@ -1,9 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 
-import { fetchNews } from "../store/news-actions";
+import { fetchNews } from "../../store/news-actions";
 import styles from "./Header.module.css";
-import Button from "./Button";
+import Button from "../Button/Button";
 
 const Header = () => {
     const dispatch = useDispatch();
