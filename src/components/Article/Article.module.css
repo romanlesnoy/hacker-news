@@ -1,0 +1,12 @@
+article {
+    margin-bottom: 30px;
+}
+
+.details {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    color: #aaa;
+    font-size: 9.5pt;
+}

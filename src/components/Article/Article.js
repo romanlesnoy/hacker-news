@@ -1,20 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import styles from "./Article.module.css";
 import dateConverter from "../../helpers/dateConverter";
 
 const Article = ({ article }) => {
-    const { title, rating, by, text, time, url } = article;
+    const { title, score, by, text, time, url, descendants } = article;
     const date = dateConverter(time);
 
     return (
         <article>
             <h2>{title}</h2>
-            <p>by {by}</p>
-            <p>{rating}</p>
-            <p>{date}</p>
-            {text && <div dangerouslySetInnerHTML={{ __html: text }} />}
-            {url && <a href={url}>Link</a>}
+            <div className={styles.details}>
+                <span>by {by}</span>&nbsp;|&nbsp;
+                <time>posted on{date}</time>&nbsp;|&nbsp;
+                <span>Rating {score}</span>
+                {descendants ? (
+                    <span>&nbsp;|&nbsp;Comments: {descendants}</span>
+                ) : null}
+            </div>
+            {text && <p dangerouslySetInnerHTML={{ __html: text }} />}
+            {url && (
+                <p>
+                    <a href={url} target="_blank" rel="noopener noreferrer">
+                        {url}
+                    </a>
+                </p>
+            )}
         </article>
     );
 };
@@ -22,7 +34,7 @@ const Article = ({ article }) => {
 Article.propTypes = {
     article: PropTypes.object,
     title: PropTypes.string,
-    rating: PropTypes.number,
+    score: PropTypes.number,
     by: PropTypes.string,
     text: PropTypes.string,
     time: PropTypes.number,
