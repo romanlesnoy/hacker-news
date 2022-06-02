@@ -7,7 +7,7 @@ import Comment from "../Comment/Comment";
 const CommentsList = ({ comments }) => {
     return (
         <React.Fragment>
-            <ul>
+            <ul className={styles.commentList}>
                 {comments.map((item) => (
                     <li key={item.id} className={styles.comment}>
                         <Comment item={item} />
