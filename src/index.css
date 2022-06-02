@@ -1,21 +1,11 @@
 @import url(./styles/normalize.css);
 
-@font-face {
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 500;
-    font-display: swap;
-    src: url("./styles/fonts/Inter-Medium.woff2"),
-        url("./styles/fonts/Inter-Medium.woff2");
-}
-
 * {
     box-sizing: border-box;
 }
 
 html,
 body {
-    margin: 0 100px;
     padding: 0;
     height: 100%;
     color: #000;
@@ -89,3 +79,8 @@ textarea {
     padding: 0;
     margin: 0;
 }
+
+article h1, article h2 {
+    font-size: 13pt;
+    font-weight: bold;
+  }
