@@ -1,3 +1,15 @@
+article a {
+    text-decoration-line: underline;
+}
+
+article a:visited {
+    color: #7f788e;
+}
+
+article p {
+    margin: 0.5rem 0;
+}
+
 .header {
     padding: 40px 0;
     display: flex;
