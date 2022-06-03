@@ -61,15 +61,14 @@ const ArticlePage = () => {
                     )}
                 </div>
 
+                {article.kids && (
+                    <Button onClick={updateComments} text={"Update comments"} />
+                )}
+
                 <div className={styles["content-padding"]}>
                     {article.kids ? (
                         <>
                             {!hasComments && <Preloader />}
-
-                            <Button
-                                onClick={updateComments}
-                                text={"Update comments"}
-                            />
 
                             {hasComments && (
                                 <CommentsList comments={comments} />

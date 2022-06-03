@@ -5,3 +5,20 @@
 .noComment {
     color: #aaa;
 }
+
+.button {
+    cursor: pointer;
+}
+
+.button:hover {
+    color: #aaa;
+}
+
+.subCommentsVisible {
+    display: flex;
+    padding-left: 25px;
+}
+
+.subCommentsHidden {
+    display: none;
+}

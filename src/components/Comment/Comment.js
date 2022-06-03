@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -16,11 +16,17 @@ const Comment = ({ item }) => {
     const subComments = useSelector((state) => state.news.subComments);
     const hasSubComments = useSelector((state) => state.news.hasSubComments);
 
+    const [subCommentsIsVisible, setSubCommentsIsVisible] = useState(false);
+
     useEffect(() => {
         if (kids) {
             dispatch(fetchSubComments(kids));
         }
     }, [dispatch, kids]);
+
+    const showSubComments = () => {
+        setSubCommentsIsVisible(!subCommentsIsVisible);
+    };
 
     const filtredSubComments = subComments.filter((item) => item.parent === id);
 
@@ -32,12 +38,16 @@ const Comment = ({ item }) => {
         <p className={styles.noComment}>Comment is deleted</p>
     ) : null;
 
+    const showSubCommentsClass = subCommentsIsVisible
+        ? styles.subCommentsVisible
+        : styles.subCommentsHidden;
+
     return (
         <React.Fragment>
-            <article>
+            <article className={styles.article}>
                 <div className="details">
                     <span>by {by}</span>&nbsp;|&nbsp;
-                    <time>posted on{date}</time>
+                    <time>posted on {date}</time>
                 </div>
 
                 {text && (
@@ -50,10 +60,18 @@ const Comment = ({ item }) => {
                 {commentDeadContent}
 
                 {commentDeletedContent}
+
+                {kids && (
+                    <button className={styles.button} onClick={showSubComments}>
+                        Show More... {subCommentsIsVisible ? "[-]" : "[+]"}
+                    </button>
+                )}
             </article>
 
             {kids && hasSubComments && (
-                <CommentsList comments={filtredSubComments} />
+                <div className={showSubCommentsClass}>
+                    <CommentsList comments={filtredSubComments} />
+                </div>
             )}
         </React.Fragment>
     );
