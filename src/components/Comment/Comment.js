@@ -9,7 +9,7 @@ import CommentsList from "../../components/CommentList/CommentsList";
 import dateConverter from "../../helpers/dateConverter";
 
 const Comment = ({ item }) => {
-    const { by, id, kids, text, time } = item;
+    const { by, id, kids, text, time, dead, deleted } = item;
     const date = dateConverter(time);
 
     const dispatch = useDispatch();
@@ -24,6 +24,14 @@ const Comment = ({ item }) => {
 
     const filtredSubComments = subComments.filter((item) => item.parent === id);
 
+    const commentDeadContent = dead ? (
+        <p className={styles.noComment}>Comment is dead</p>
+    ) : null;
+
+    const commentDeletedContent = deleted ? (
+        <p className={styles.noComment}>Comment is deleted</p>
+    ) : null;
+
     return (
         <React.Fragment>
             <article>
@@ -32,11 +40,18 @@ const Comment = ({ item }) => {
                     <time>posted on{date}</time>
                 </div>
 
-                <p
-                    dangerouslySetInnerHTML={{ __html: text }}
-                    className={styles.text}
-                />
+                {text && (
+                    <p
+                        dangerouslySetInnerHTML={{ __html: text }}
+                        className={styles.text}
+                    />
+                )}
+
+                {commentDeadContent}
+
+                {commentDeletedContent}
             </article>
+
             {kids && hasSubComments && (
                 <CommentsList comments={filtredSubComments} />
             )}
@@ -51,7 +66,9 @@ Comment.propTypes = {
     kids: PropTypes.array,
     parent: PropTypes.number,
     text: PropTypes.string,
-    time: PropTypes.number
+    time: PropTypes.number,
+    dead: PropTypes.bool,
+    deleted: PropTypes.bool
 };
 
 export default Comment;

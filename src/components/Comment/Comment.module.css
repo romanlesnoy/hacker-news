@@ -10,3 +10,7 @@
 .text {
     overflow-wrap: break-word;
 }
+
+.noComment {
+    color: #aaa;
+}
