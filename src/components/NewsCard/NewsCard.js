@@ -14,11 +14,11 @@ const NewsCard = (props) => {
             <Link to={`/article/${id}`}>
                 <article className={styles.article}>
                     <h2 className={styles.title}>{title}</h2>
-                    <div className={styles.details}>
+                    <div className="details">
                         <span>by {author}</span>&nbsp;
                         <time>posted on {date}</time>
                     </div>
-                    <div className={styles.details}>
+                    <div className="details">
                         <span>Rating: {score}</span>&nbsp;|&nbsp;
                         {descendants ? (
                             <span>Comments: {descendants}</span>

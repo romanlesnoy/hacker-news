@@ -1,12 +1,3 @@
-.details {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-
-    color: #aaa;
-    font-size: 9.5pt;
-}
-
 .text {
     overflow-wrap: break-word;
 }

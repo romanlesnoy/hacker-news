@@ -35,7 +35,7 @@ const Comment = ({ item }) => {
     return (
         <React.Fragment>
             <article>
-                <div className={styles.details}>
+                <div className="details">
                     <span>by {by}</span>&nbsp;|&nbsp;
                     <time>posted on{date}</time>
                 </div>

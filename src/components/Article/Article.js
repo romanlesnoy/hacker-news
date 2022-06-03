@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import styles from "./Article.module.css";
 import dateConverter from "../../helpers/dateConverter";
 
 const Article = ({ article }) => {
@@ -11,7 +10,7 @@ const Article = ({ article }) => {
     return (
         <article>
             <h2>{title}</h2>
-            <div className={styles.details}>
+            <div className="details">
                 <span>by {by}</span>&nbsp;|&nbsp;
                 <time>posted on{date}</time>&nbsp;|&nbsp;
                 <span>Rating {score}</span>
