@@ -88,3 +88,33 @@ export const fetchSubComments = (kidsIds) => {
         }
     };
 };
+
+export const refreshComments = (id) => {
+    return async (dispatch) => {
+        try {
+            dispatch(newsActions.resetComments());
+
+            const article = await getData(id).then;
+            const commentsId = article.kids;
+
+            if (!commentsId) {
+                return;
+            }
+
+            const comments = await Promise.all(
+                commentsId.map((id) => getData(id))
+            );
+
+            dispatch(newsActions.loadComments(comments));
+        } catch (error) {
+            console.log(error);
+            dispatch(
+                errorActions.showError({
+                    status: "error",
+                    title: "Error!",
+                    message: "Refreshing comments failed!"
+                })
+            );
+        }
+    };
+};

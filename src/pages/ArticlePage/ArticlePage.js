@@ -11,7 +11,7 @@ import Button from "../../components/Button/Button";
 import ErrorNotification from "../../components/ErrorNotification/ErrorNotification";
 import { newsActions } from "../../store/news-slice";
 import { fetchStory } from "../../store/news-actions";
-import { fetchComments } from "../../store/news-actions";
+import { fetchComments, refreshComments } from "../../store/news-actions";
 
 const ArticlePage = () => {
     const history = useHistory();
@@ -29,7 +29,7 @@ const ArticlePage = () => {
     const notification = useSelector((state) => state.error.notification);
 
     const updateComments = () => {
-        dispatch(fetchComments(article.kids));
+        dispatch(refreshComments(article.id));
     };
 
     useEffect(() => {
@@ -46,6 +46,14 @@ const ArticlePage = () => {
         }
     }, [dispatch, article.kids]);
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            updateComments();
+        }, 60000);
+
+        return () => clearInterval(interval);
+    });
+
     return (
         <React.Fragment>
             <header className={styles.header}>
@@ -61,9 +69,7 @@ const ArticlePage = () => {
                     )}
                 </div>
 
-                {article.kids && (
-                    <Button onClick={updateComments} text={"Update comments"} />
-                )}
+                <Button onClick={updateComments} text={"Update comments"} />
 
                 <div className={styles["content-padding"]}>
                     {article.kids ? (
