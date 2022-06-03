@@ -53,7 +53,32 @@ const ArticlePage = () => {
             </header>
 
             <main>
-                {isLoading && !hasArticle && <Preloader />}
+                <div className={styles["content-padding"]}>
+                    {isLoading && !hasArticle && <Preloader />}
+
+                    {!isLoading && hasArticle && (
+                        <>{article && <Article article={article} />}</>
+                    )}
+                </div>
+
+                <div className={styles["content-padding"]}>
+                    {article.kids ? (
+                        <>
+                            {!hasComments && <Preloader />}
+
+                            <Button
+                                onClick={updateComments}
+                                text={"Update comments"}
+                            />
+
+                            {hasComments && (
+                                <CommentsList comments={comments} />
+                            )}
+                        </>
+                    ) : (
+                        <p>No comments</p>
+                    )}
+                </div>
 
                 {notification && (
                     <ErrorNotification
@@ -61,27 +86,6 @@ const ArticlePage = () => {
                         title={notification.title}
                         message={notification.message}
                     />
-                )}
-
-                {!isLoading && hasArticle && (
-                    <div>
-                        {article && <Article article={article} />}
-
-                        {article.kids ? (
-                            <>
-                                <Button
-                                    onClick={updateComments}
-                                    text={"Update comments"}
-                                />
-                                {!hasComments && <Preloader />}
-                                {hasComments && (
-                                    <CommentsList comments={comments} />
-                                )}
-                            </>
-                        ) : (
-                            <p>No comments</p>
-                        )}
-                    </div>
                 )}
             </main>
         </React.Fragment>

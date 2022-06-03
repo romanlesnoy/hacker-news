@@ -21,6 +21,13 @@ body {
     margin: 0 auto;
 }
 
+@media only screen and (max-width: 765px) {
+    #root {
+        width: auto;
+        margin: 0 20px;
+    }
+}
+
 *::before,
 *::after {
     box-sizing: inherit;
@@ -80,7 +87,20 @@ textarea {
     margin: 0;
 }
 
-article h1, article h2 {
+article h1,
+article h2 {
     font-size: 13pt;
     font-weight: bold;
-  }
+}
+
+article a {
+    text-decoration-line: underline;
+}
+
+article a:visited {
+    color: #7f788e;
+}
+
+p {
+    margin: 0.5rem 0;
+}

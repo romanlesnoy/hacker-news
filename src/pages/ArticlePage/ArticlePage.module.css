@@ -1,18 +1,10 @@
-article a {
-    text-decoration-line: underline;
-}
-
-article a:visited {
-    color: #7f788e;
-}
-
-article p {
-    margin: 0.5rem 0;
-}
-
 .header {
-    padding: 40px 0;
+    padding: 30px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.content-padding {
+    padding-bottom: 30px;
 }
