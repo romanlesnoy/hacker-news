@@ -18,14 +18,18 @@ const ArticlePage = () => {
     const { id } = useParams();
 
     const dispatch = useDispatch();
-    const isLoading = useSelector((state) => state.news.isLoading);
-    const stories = useSelector((state) => state.news.news);
+    const articleIsLoading = useSelector(
+        (state) => state.news.articleIsLoading
+    );
+    const stories = useSelector((state) => state.news.stories);
     const findStory = stories.find((item) => item.id === Number(id));
 
     const article = useSelector((state) => state.news.article);
     const comments = useSelector((state) => state.news.comments);
-    const hasArticle = useSelector((state) => state.news.hasArticle);
-    const hasComments = useSelector((state) => state.news.hasComments);
+
+    const commentsAreLoading = useSelector(
+        (state) => state.news.commentsAreLoading
+    );
     const notification = useSelector((state) => state.error.notification);
 
     const updateComments = () => {
@@ -62,28 +66,29 @@ const ArticlePage = () => {
 
             <main>
                 <div className={styles["content-padding"]}>
-                    {isLoading && !hasArticle && <Preloader />}
-
-                    {!isLoading && hasArticle && (
-                        <>{article && <Article article={article} />}</>
+                    {articleIsLoading ? (
+                        <Preloader />
+                    ) : (
+                        article && <Article article={article} />
                     )}
                 </div>
 
-                <Button onClick={updateComments} text={"Update comments"} />
+                {article.kids && (
+                    <>
+                        <Button
+                            onClick={updateComments}
+                            text={"Update comments"}
+                        />
 
-                <div className={styles["content-padding"]}>
-                    {article.kids ? (
-                        <>
-                            {!hasComments && <Preloader />}
-
-                            {hasComments && (
+                        <div className={styles["content-padding"]}>
+                            {commentsAreLoading ? (
+                                <Preloader />
+                            ) : (
                                 <CommentsList comments={comments} />
                             )}
-                        </>
-                    ) : (
-                        <p>No comments</p>
-                    )}
-                </div>
+                        </div>
+                    </>
+                )}
 
                 {notification && (
                     <ErrorNotification

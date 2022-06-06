@@ -59,6 +59,7 @@ export const fetchComments = (ids) => {
             dispatch(newsActions.resetComments());
 
             const data = await Promise.all(ids.map((id) => getData(id)));
+
             dispatch(newsActions.loadComments(data));
         } catch (error) {
             dispatch(
@@ -94,7 +95,7 @@ export const refreshComments = (id) => {
         try {
             dispatch(newsActions.resetComments());
 
-            const article = await getData(id).then;
+            const article = await getData(id);
             const commentsId = article.kids;
 
             if (!commentsId) {

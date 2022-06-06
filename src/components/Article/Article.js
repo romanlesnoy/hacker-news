@@ -16,7 +16,9 @@ const Article = ({ article }) => {
                 <span>Rating {score}</span>
                 {descendants ? (
                     <span>&nbsp;|&nbsp;Comments: {descendants}</span>
-                ) : null}
+                ) : (
+                    <span>&nbsp;|&nbsp;No Comments</span>
+                )}
             </div>
             {text && <p dangerouslySetInnerHTML={{ __html: text }} />}
             {url && (

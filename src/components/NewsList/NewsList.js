@@ -7,15 +7,17 @@ import Preloader from "../Preloader/Preloader";
 import sortByDate from "../../helpers/sortByDate";
 
 const NewsList = () => {
-    const stories = useSelector((state) => state.news.news);
-    const isLoading = useSelector((state) => state.news.isLoading);
+    const storiesAreLoading = useSelector(
+        (state) => state.news.storiesAreLoading
+    );
+    const stories = useSelector((state) => state.news.stories);
     const cards = stories.filter((item) => item !== null).sort(sortByDate);
 
     return (
         <React.Fragment>
-            {isLoading && <Preloader />}
+            {storiesAreLoading && <Preloader />}
             <ul className={styles.cardList}>
-                {!isLoading &&
+                {stories &&
                     cards.map((story) => (
                         <NewsCard
                             key={story.id}

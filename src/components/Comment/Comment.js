@@ -14,7 +14,7 @@ const Comment = ({ item }) => {
 
     const dispatch = useDispatch();
     const subComments = useSelector((state) => state.news.subComments);
-    const hasSubComments = useSelector((state) => state.news.hasSubComments);
+    // const hasSubComments = useSelector((state) => state.news.hasSubComments);
 
     const [subCommentsIsVisible, setSubCommentsIsVisible] = useState(false);
 
@@ -68,7 +68,7 @@ const Comment = ({ item }) => {
                 )}
             </article>
 
-            {kids && hasSubComments && (
+            {kids && (
                 <div className={showSubCommentsClass}>
                     <CommentsList comments={filtredSubComments} />
                 </div>

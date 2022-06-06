@@ -3,50 +3,45 @@ import { createSlice } from "@reduxjs/toolkit";
 const newsSlice = createSlice({
     name: "news",
     initialState: {
-        news: [],
+        stories: [],
         article: {},
         comments: [],
         subComments: [],
-        isLoading: true,
-        hasArticle: false,
-        hasComments: false,
-        hasSubComments: false
+        storiesAreLoading: true,
+        articleIsLoading: true,
+        commentsAreLoading: true
     },
     reducers: {
         loadStories(state, action) {
-            state.news = action.payload;
-            state.isLoading = false;
+            state.stories = action.payload;
+            state.storiesAreLoading = false;
         },
         loadArticle(state, action) {
             state.article = action.payload;
-            state.hasArticle = true;
-            state.isLoading = false;
+            state.articleIsLoading = false;
         },
         loadComments(state, action) {
             state.comments = action.payload;
-            state.hasComments = true;
+            state.commentsAreLoading = false;
         },
         loadSubComments(state, action) {
             state.subComments = [...state.subComments, action.payload];
-            state.hasSubComments = true;
         },
         resetNews(state) {
-            state.news = [];
-            state.isLoading = true;
+            state.stories = [];
+            state.storiesAreLoading = true;
         },
         resetArticle(state) {
             state.article = {};
             state.comments = [];
             state.subComments = [];
-            state.hasArticle = false;
-            state.hasComments = false;
-            state.hasSubComments = false;
+            state.articleIsLoading = true;
+            state.commentsAreLoading = true;
         },
         resetComments(state) {
             state.comments = [];
             state.subComments = [];
-            state.hasComments = false;
-            state.hasSubComments = false;
+            state.commentsAreLoading = true;
         }
     }
 });
