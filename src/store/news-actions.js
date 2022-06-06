@@ -53,12 +53,13 @@ export const fetchStory = (id) => {
     };
 };
 
-export const fetchComments = (ids) => {
-    return async (dispatch) => {
+export const fetchComments = () => {
+    return async (dispatch, getState) => {
         try {
             dispatch(newsActions.resetComments());
 
-            const data = await Promise.all(ids.map((id) => getData(id)));
+            const kidsIds = getState().news.article.kids;
+            const data = await Promise.all(kidsIds.map((id) => getData(id)));
 
             dispatch(newsActions.loadComments(data));
         } catch (error) {
@@ -84,36 +85,6 @@ export const fetchSubComments = (kidsIds) => {
                     status: "error",
                     title: "Error!",
                     message: "Fetching comments failed!"
-                })
-            );
-        }
-    };
-};
-
-export const refreshComments = (id) => {
-    return async (dispatch) => {
-        try {
-            dispatch(newsActions.resetComments());
-
-            const article = await getData(id);
-            const commentsId = article.kids;
-
-            if (!commentsId) {
-                return;
-            }
-
-            const comments = await Promise.all(
-                commentsId.map((id) => getData(id))
-            );
-
-            dispatch(newsActions.loadComments(comments));
-        } catch (error) {
-            console.log(error);
-            dispatch(
-                errorActions.showError({
-                    status: "error",
-                    title: "Error!",
-                    message: "Refreshing comments failed!"
                 })
             );
         }

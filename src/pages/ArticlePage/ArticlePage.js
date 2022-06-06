@@ -10,8 +10,7 @@ import Preloader from "../../components/Preloader/Preloader";
 import Button from "../../components/Button/Button";
 import ErrorNotification from "../../components/ErrorNotification/ErrorNotification";
 import { newsActions } from "../../store/news-slice";
-import { fetchStory } from "../../store/news-actions";
-import { fetchComments, refreshComments } from "../../store/news-actions";
+import { fetchStory, fetchComments } from "../../store/news-actions";
 
 const ArticlePage = () => {
     const history = useHistory();
@@ -33,7 +32,7 @@ const ArticlePage = () => {
     const notification = useSelector((state) => state.error.notification);
 
     const updateComments = () => {
-        dispatch(refreshComments(article.id));
+        dispatch(fetchComments());
     };
 
     useEffect(() => {
@@ -46,7 +45,7 @@ const ArticlePage = () => {
 
     useEffect(() => {
         if (article.kids) {
-            dispatch(fetchComments(article.kids));
+            dispatch(fetchComments());
         }
     }, [dispatch, article.kids]);
 
