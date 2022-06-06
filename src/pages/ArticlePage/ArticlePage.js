@@ -31,8 +31,10 @@ const ArticlePage = () => {
     );
     const notification = useSelector((state) => state.error.notification);
 
-    const updateComments = () => {
-        dispatch(fetchComments());
+    const loadComments = () => {
+        if (article.kids) {
+            dispatch(fetchComments());
+        }
     };
 
     useEffect(() => {
@@ -44,14 +46,12 @@ const ArticlePage = () => {
     }, [findStory, dispatch, id]);
 
     useEffect(() => {
-        if (article.kids) {
-            dispatch(fetchComments());
-        }
-    }, [dispatch, article.kids]);
+        loadComments();
+    });
 
     useEffect(() => {
         const interval = setInterval(() => {
-            updateComments();
+            loadComments();
         }, 60000);
 
         return () => clearInterval(interval);
@@ -60,7 +60,7 @@ const ArticlePage = () => {
     return (
         <React.Fragment>
             <header className={styles.header}>
-                <Button onClick={() => history.goBack()} text={"Back"} />
+                <Button onClick={() => history.push("/")} text={"Back"} />
             </header>
 
             <main>
@@ -68,14 +68,14 @@ const ArticlePage = () => {
                     {articleIsLoading ? (
                         <Preloader />
                     ) : (
-                        article && <Article article={article} />
+                        article && <Article {...article} />
                     )}
                 </div>
 
                 {article.kids && (
                     <>
                         <Button
-                            onClick={updateComments}
+                            onClick={loadComments}
                             text={"Update comments"}
                         />
 

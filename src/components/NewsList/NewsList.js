@@ -19,15 +19,7 @@ const NewsList = () => {
             <ul className={styles.cardList}>
                 {stories &&
                     cards.map((story) => (
-                        <NewsCard
-                            key={story.id}
-                            id={story.id}
-                            title={story.title}
-                            score={story.score}
-                            author={story.by}
-                            time={story.time}
-                            descendants={story.descendants}
-                        />
+                        <NewsCard key={story.id} {...story} />
                     ))}
             </ul>
         </React.Fragment>

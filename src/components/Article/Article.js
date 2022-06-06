@@ -1,30 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import dateConverter from "../../helpers/dateConverter";
+import CardContent from "../CardContent/CardContent";
 
-const Article = ({ article }) => {
-    const { title, score, by, text, time, url, descendants } = article;
-    const date = dateConverter(time);
-
+const Article = (props) => {
     return (
         <article>
-            <h2>{title}</h2>
-            <div className="details">
-                <span>by {by}</span>&nbsp;|&nbsp;
-                <time>posted on{date}</time>&nbsp;|&nbsp;
-                <span>Rating {score}</span>
-                {descendants ? (
-                    <span>&nbsp;|&nbsp;Comments: {descendants}</span>
-                ) : (
-                    <span>&nbsp;|&nbsp;No Comments</span>
-                )}
-            </div>
-            {text && <p dangerouslySetInnerHTML={{ __html: text }} />}
-            {url && (
+            <CardContent {...props} />
+            {props.text && (
+                <p dangerouslySetInnerHTML={{ __html: props.text }} />
+            )}
+            {props.url && (
                 <p>
-                    <a href={url} target="_blank" rel="noopener noreferrer">
-                        {url}
+                    <a
+                        href={props.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Read source
                     </a>
                 </p>
             )}
@@ -33,12 +26,7 @@ const Article = ({ article }) => {
 };
 
 Article.propTypes = {
-    article: PropTypes.object,
-    title: PropTypes.string,
-    score: PropTypes.number,
-    by: PropTypes.string,
     text: PropTypes.string,
-    time: PropTypes.number,
     url: PropTypes.string
 };
 
