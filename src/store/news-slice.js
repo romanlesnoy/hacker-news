@@ -4,7 +4,7 @@ const newsSlice = createSlice({
     name: "news",
     initialState: {
         stories: [],
-        article: {},
+        article: null,
         comments: [],
         subComments: [],
         storiesAreLoading: true,
@@ -42,6 +42,17 @@ const newsSlice = createSlice({
             state.comments = [];
             state.subComments = [];
             state.commentsAreLoading = true;
+        },
+        resetLoadingState(state, action) {
+            if (action.payload === "STORIES_LOADING_FAIL") {
+                state.storiesAreLoading = false;
+            }
+            if (action.payload === "ARTICLE_LOADING_FAIL") {
+                state.articleIsLoading = false;
+            }
+            if (action.payload === "COMMENTS_LOADING_FAIL") {
+                state.commentsAreLoading = false;
+            }
         }
     }
 });

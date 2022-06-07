@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -25,17 +25,19 @@ const ArticlePage = () => {
 
     const article = useSelector((state) => state.news.article);
     const comments = useSelector((state) => state.news.comments);
+    const notification = useSelector((state) => state.error.notification);
 
     const commentsAreLoading = useSelector(
         (state) => state.news.commentsAreLoading
     );
-    const notification = useSelector((state) => state.error.notification);
 
-    const loadComments = () => {
-        if (article.kids) {
+    const loadComments = useCallback(() => {
+        if (article === null) {
+            return;
+        } else if (article.kids) {
             dispatch(fetchComments());
         }
-    };
+    }, [dispatch, article]);
 
     useEffect(() => {
         if (findStory) {
@@ -47,7 +49,7 @@ const ArticlePage = () => {
 
     useEffect(() => {
         loadComments();
-    });
+    }, [loadComments]);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -55,7 +57,7 @@ const ArticlePage = () => {
         }, 60000);
 
         return () => clearInterval(interval);
-    });
+    }, [loadComments]);
 
     return (
         <React.Fragment>
@@ -64,37 +66,38 @@ const ArticlePage = () => {
             </header>
 
             <main>
-                <div className={styles["content-padding"]}>
-                    {articleIsLoading ? (
-                        <Preloader />
-                    ) : (
-                        article && <Article {...article} />
-                    )}
-                </div>
+                {notification && (
+                    <ErrorNotification
+                        title={notification.title}
+                        message={notification.message}
+                    />
+                )}
 
-                {article.kids && (
+                {article !== null && (
+                    <section className={styles["content-padding"]}>
+                        {articleIsLoading ? (
+                            <Preloader />
+                        ) : (
+                            <Article {...article} />
+                        )}
+                    </section>
+                )}
+
+                {article !== null && article.kids && (
                     <>
                         <Button
                             onClick={loadComments}
                             text={"Update comments"}
                         />
 
-                        <div className={styles["content-padding"]}>
+                        <section className={styles["content-padding"]}>
                             {commentsAreLoading ? (
                                 <Preloader />
                             ) : (
                                 <CommentsList comments={comments} />
                             )}
-                        </div>
+                        </section>
                     </>
-                )}
-
-                {notification && (
-                    <ErrorNotification
-                        status={notification.status}
-                        title={notification.title}
-                        message={notification.message}
-                    />
                 )}
             </main>
         </React.Fragment>

@@ -31,16 +31,13 @@ const MainPage = () => {
     return (
         <React.Fragment>
             <Header />
-            <main>
-                {notification && (
-                    <ErrorNotification
-                        status={notification.status}
-                        title={notification.title}
-                        message={notification.message}
-                    />
-                )}
-                <NewsList />
-            </main>
+            {notification && (
+                <ErrorNotification
+                    title={notification.title}
+                    message={notification.message}
+                />
+            )}
+            <main>{!notification && <NewsList />}</main>
         </React.Fragment>
     );
 };
