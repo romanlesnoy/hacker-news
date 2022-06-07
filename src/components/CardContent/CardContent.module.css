@@ -1,0 +1,17 @@
+.details {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    color: #aaa;
+    font-size: 9.5pt;
+}
+
+@media screen and (max-width: 360px) {
+    .details {
+        flex-direction: column;
+    }
+    .details:last-child {
+        flex-direction: row;
+    }
+}

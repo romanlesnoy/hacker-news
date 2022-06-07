@@ -115,12 +115,3 @@ a:visited {
 p {
     margin: 0.5rem 0;
 }
-
-.details {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-
-    color: #aaa;
-    font-size: 9.5pt;
-}

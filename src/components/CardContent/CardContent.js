@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import dateConverter from "../../helpers/dateConverter";
+import styles from "./CardContent.module.css";
 
 const CardContent = (props) => {
     const { title, score, by, time, descendants } = props;
@@ -10,12 +11,12 @@ const CardContent = (props) => {
     return (
         <>
             <h2>{title}</h2>
-            <div className="details">
-                <span>by {by}</span>&nbsp;
+            <div className={styles.details}>
+                <span>by {by}&nbsp;</span>
                 <time>posted on {date}</time>
             </div>
-            <div className="details">
-                <span>Rating: {score}</span>&nbsp;|&nbsp;
+            <div className={styles.details}>
+                <span>Rating: {score}&nbsp;|&nbsp;</span>
                 {descendants ? (
                     <span>Comments: {descendants}</span>
                 ) : (
