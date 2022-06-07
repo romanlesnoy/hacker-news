@@ -32,9 +32,7 @@ const ArticlePage = () => {
     );
 
     const loadComments = useCallback(() => {
-        if (article === null) {
-            return;
-        } else if (article.kids) {
+        if (article !== null && article.kids) {
             dispatch(fetchComments());
         }
     }, [dispatch, article]);

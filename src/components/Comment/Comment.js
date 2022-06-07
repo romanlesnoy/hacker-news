@@ -6,6 +6,7 @@ import styles from "./Comment.module.css";
 import { fetchSubComments } from "../../store/news-actions";
 import CommentsList from "../../components/CommentList/CommentsList";
 import dateConverter from "../../helpers/dateConverter";
+import cleanHtml from "../../helpers/sanitizeHtml";
 
 const Comment = ({ item }) => {
     const { by, id, kids, text, time, dead, deleted } = item;
@@ -40,6 +41,8 @@ const Comment = ({ item }) => {
         ? styles.subCommentsVisible
         : styles.subCommentsHidden;
 
+    const htmlForParse = cleanHtml(text);
+
     return (
         <React.Fragment>
             <article className={styles.article}>
@@ -50,7 +53,7 @@ const Comment = ({ item }) => {
 
                 {text && (
                     <p
-                        dangerouslySetInnerHTML={{ __html: text }}
+                        dangerouslySetInnerHTML={{ __html: htmlForParse }}
                         className={styles.text}
                     />
                 )}

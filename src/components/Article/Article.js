@@ -2,13 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import CardContent from "../CardContent/CardContent";
+import cleanHtml from "../../helpers/sanitizeHtml";
 
 const Article = (props) => {
+    const htmlForParse = cleanHtml(props.text);
     return (
         <article>
             <CardContent {...props} />
             {props.text && (
-                <p dangerouslySetInnerHTML={{ __html: props.text }} />
+                <p dangerouslySetInnerHTML={{ __html: htmlForParse }} />
             )}
             {props.url && (
                 <p>
