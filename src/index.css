@@ -61,6 +61,12 @@ a:visited {
     color: #7f788e;
 }
 
+a:hover {
+    opacity: 0.5;
+    transition: 0.3s, ease-in-out, linear;
+    cursor: pointer;
+}
+
 button {
     background-color: transparent;
     border-radius: 0;
@@ -74,13 +80,6 @@ button {
     appearance: none;
     -webkit-appearance: none;
     margin: 0;
-}
-
-a:hover,
-button:hover {
-    opacity: 0.8;
-    transition: 0.2s, ease-in-out, linear;
-    cursor: pointer;
 }
 
 figure {

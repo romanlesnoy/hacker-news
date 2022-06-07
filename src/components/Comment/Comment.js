@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import styles from "./Comment.module.css";
 import { fetchSubComments } from "../../store/news-actions";
@@ -14,7 +13,6 @@ const Comment = ({ item }) => {
 
     const dispatch = useDispatch();
     const subComments = useSelector((state) => state.news.subComments);
-    // const hasSubComments = useSelector((state) => state.news.hasSubComments);
 
     const [subCommentsIsVisible, setSubCommentsIsVisible] = useState(false);
 
@@ -45,8 +43,8 @@ const Comment = ({ item }) => {
     return (
         <React.Fragment>
             <article className={styles.article}>
-                <div className="details">
-                    <span>by {by}</span>&nbsp;|&nbsp;
+                <div className={styles.details}>
+                    <span>by {by}&nbsp;|&nbsp;</span>
                     <time>posted on {date}</time>
                 </div>
 

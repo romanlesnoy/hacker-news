@@ -1,3 +1,8 @@
+.details {
+    color: #aaa;
+    font-size: 9.5pt;
+}
+
 .text {
     overflow-wrap: break-word;
 }
@@ -11,7 +16,9 @@
 }
 
 .button:hover {
-    color: #aaa;
+    opacity: 0.8;
+    transition: 0.2s, ease-in-out, linear;
+    cursor: pointer;
 }
 
 .subCommentsVisible {
