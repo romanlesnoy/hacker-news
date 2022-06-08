@@ -1,5 +1,7 @@
 # Hacker news
 
+[Ссылка на проект](hacker-news-ui-clone.netlify.app)
+
 Интерфейс для просмотра последних новостей [Hacker News](https://news.ycombinator.com/news), статей и комментариев.
 
 ## Функционал
