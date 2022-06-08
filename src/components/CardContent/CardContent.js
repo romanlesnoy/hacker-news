@@ -10,19 +10,23 @@ const CardContent = (props) => {
 
     return (
         <>
-            <h2>{title}</h2>
-            <div className={styles.details}>
-                <span>by {by}&nbsp;</span>
-                <time>posted on {date}</time>
-            </div>
-            <div className={styles.details}>
-                <span>Rating: {score}&nbsp;|&nbsp;</span>
-                {descendants ? (
-                    <span>Comments: {descendants}</span>
-                ) : (
-                    <span>No comments</span>
-                )}
-            </div>
+            {title && <h2>{title}</h2>}
+            {by && time && (
+                <div className={styles.details}>
+                    <span>by {by}&nbsp;</span>
+                    <time>posted on {date}</time>
+                </div>
+            )}
+            {score && descendants >= 0 && (
+                <div className={styles.details}>
+                    {<span>Rating: {score}&nbsp;|&nbsp;</span>}
+                    {descendants ? (
+                        <span>Comments: {descendants}</span>
+                    ) : (
+                        <span>No comments</span>
+                    )}
+                </div>
+            )}
         </>
     );
 };

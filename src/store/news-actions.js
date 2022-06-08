@@ -31,7 +31,7 @@ export const fetchNews = () => {
             dispatch(
                 errorActions.showError({
                     title: "Error!",
-                    message: "Fetching news failed!"
+                    message: "Fetching news failed! Try again later."
                 })
             );
         }
@@ -54,7 +54,7 @@ export const fetchStory = (id) => {
             dispatch(
                 errorActions.showError({
                     title: "Error!",
-                    message: "Fetching article failed!"
+                    message: "Fetching article failed! Try again later."
                 })
             );
         }
@@ -78,7 +78,7 @@ export const fetchComments = () => {
             dispatch(
                 errorActions.showError({
                     title: "Error!",
-                    message: "Fetching comments failed!"
+                    message: "Fetching comments failed! Try again later."
                 })
             );
         }
@@ -100,7 +100,7 @@ export const fetchSubComments = (kidsIds) => {
             dispatch(
                 errorActions.showError({
                     title: "Error!",
-                    message: "Fetching comments failed!"
+                    message: "Fetching comments failed! Try again later."
                 })
             );
         }

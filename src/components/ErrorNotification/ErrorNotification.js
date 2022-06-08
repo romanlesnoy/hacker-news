@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import classes from "./ErrorNotification.module.css";
+import styles from "./ErrorNotification.module.css";
 
 const ErrorNotification = (props) => {
     return (
-        <section className={classes.notification}>
+        <section className={styles.notification}>
             <h2>{props.title}</h2>
             <p>{props.message}</p>
         </section>
