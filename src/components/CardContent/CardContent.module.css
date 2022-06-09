@@ -8,10 +8,7 @@
 }
 
 @media screen and (max-width: 390px) {
-    .details {
+    .column {
         flex-direction: column;
-    }
-    .details:last-child {
-        flex-direction: row;
     }
 }

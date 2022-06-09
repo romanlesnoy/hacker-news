@@ -8,11 +8,13 @@ const CardContent = (props) => {
     const { title, score, by, time, descendants } = props;
     const date = dateConverter(time);
 
+    const cssClasses = `${styles.details} ${styles.column}`;
+
     return (
         <>
             {title && <h2>{title}</h2>}
             {by && time && (
-                <div className={styles.details}>
+                <div className={cssClasses}>
                     <span>by {by}&nbsp;</span>
                     <time>posted on {date}</time>
                 </div>
