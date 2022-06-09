@@ -32,7 +32,7 @@ const newsSlice = createSlice({
             state.storiesAreLoading = true;
         },
         resetArticle(state) {
-            state.article = {};
+            state.article = null;
             state.comments = [];
             state.subComments = [];
             state.articleIsLoading = true;

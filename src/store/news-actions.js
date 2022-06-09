@@ -4,7 +4,7 @@ import { errorActions } from "./error-slice";
 import { getStoriesIds, getData } from "../api/hacker-news-api";
 
 const startIndex = 0;
-const endIndex = 99;
+const endIndex = 100;
 
 const getSlice = (array, start = 0, end = 2) => {
     const slice = array.slice(start, end);

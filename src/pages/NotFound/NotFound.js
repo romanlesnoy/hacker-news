@@ -13,7 +13,7 @@ function NotFound() {
                 <Button
                     role="link"
                     text={"back"}
-                    onClick={() => history.goBack()}
+                    onClick={() => history.push("/")}
                 />
             </header>
 
