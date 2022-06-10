@@ -11,7 +11,7 @@ const NewsList = () => {
         (state) => state.news.storiesAreLoading
     );
     const stories = useSelector((state) => state.news.stories);
-    const cards = stories.filter((item) => item !== null).sort(sortByDate);
+    const cards = [...stories].sort(sortByDate);
 
     return (
         <React.Fragment>

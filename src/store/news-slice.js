@@ -13,7 +13,9 @@ const newsSlice = createSlice({
     },
     reducers: {
         loadStories(state, action) {
-            state.stories = action.payload;
+            const storiesData = action.payload;
+            const filteredStories = storiesData.filter((item) => item !== null);
+            state.stories = filteredStories;
             state.storiesAreLoading = false;
         },
         loadArticle(state, action) {
