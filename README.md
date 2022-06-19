@@ -1,6 +1,6 @@
 # Hacker news
 
-[Ссылка на проект](https://hacker-news-ui-clone.netlify.app/), *сайт адаптивен - можно посмотреть с мобильного устройства*.
+[Ссылка на проект](https://hacker-news-ui-clone.netlify.app/).
 
 Интерфейс для просмотра последних новостей [Hacker News](https://news.ycombinator.com/news), статей и комментариев.
 
