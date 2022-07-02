@@ -1,5 +1,6 @@
 import { newsActions } from "./news-slice";
 import { errorActions } from "./error-slice";
+import { paginationActions } from "./pagination-slice";
 
 import { getStoriesIds, getData } from "../api/hacker-news-api";
 
@@ -25,6 +26,7 @@ export const fetchNews = () => {
             const data = await Promise.all(
                 newsIdsSlice.map((id) => getData(id))
             );
+            dispatch(paginationActions.setCount(data.length));
             dispatch(newsActions.loadStories(data));
         } catch (error) {
             dispatch(newsActions.resetLoadingState("STORIES_LOADING_FAIL"));
