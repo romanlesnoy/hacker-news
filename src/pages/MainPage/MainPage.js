@@ -19,25 +19,27 @@ const MainPage = () => {
             isInitial = false;
         }
 
-        const interval = setInterval(() => {
-            dispatch(fetchNews());
-        }, 60000);
+        // const interval = setInterval(() => {
+        //     dispatch(fetchNews());
+        // }, 60000);
 
         dispatch(newsActions.resetArticle());
 
-        return () => clearInterval(interval);
+        // return () => clearInterval(interval);
     }, [dispatch]);
 
     return (
         <React.Fragment>
             <Header />
-            {notification && (
-                <ErrorNotification
-                    title={notification.title}
-                    message={notification.message}
-                />
-            )}
-            <main>{!notification && <NewsList />}</main>
+            <main>
+                {notification && (
+                    <ErrorNotification
+                        title={notification.title}
+                        message={notification.message}
+                    />
+                )}
+                {!notification && <NewsList />}
+            </main>
         </React.Fragment>
     );
 };
