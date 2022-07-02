@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { paginationActions } from "../../store/pagination-slice";
 
 import styles from "./Pagination.module.css";
-import Button from "../Button/Button";
+import Arrow from "../Icon/Icon";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 
 const Pagination = () => {
@@ -40,37 +40,49 @@ const Pagination = () => {
     let lastPage = paginationRange[paginationRange.length - 1];
 
     return (
-        <nav>
+        <nav className={styles.nav}>
             <ul className={styles.list}>
                 {currentPage !== 1 ? (
-                    <li>
-                        <Button text="back" onClick={goToPreviousPage} />
+                    <li className={styles.listItem}>
+                        <button
+                            className={styles.button}
+                            onClick={goToPreviousPage}
+                        >
+                            <Arrow className={styles.backArrow} />
+                        </button>
                     </li>
                 ) : null}
 
                 {paginationRange.map((pageNumber, index) => {
                     if (pageNumber === DOTS) {
                         return (
-                            <li key={index} className="pagination-item dots">
+                            <li key={index} className={styles.listItem}>
                                 &#8230;
                             </li>
                         );
                     }
 
                     return (
-                        <li key={index}>
-                            <Button
+                        <li key={index} className={styles.listItem}>
+                            <button
+                                className={styles.button}
                                 onClick={changePage}
-                                text={pageNumber.toString()}
                                 disabled={pageNumber === currentPage}
-                            />
+                            >
+                                {pageNumber.toString()}
+                            </button>
                         </li>
                     );
                 })}
 
                 {currentPage === lastPage ? null : (
-                    <li>
-                        <Button text="next" onClick={goToNextPage} />
+                    <li className={styles.listItem}>
+                        <button
+                            className={styles.button}
+                            onClick={goToNextPage}
+                        >
+                            <Arrow className={styles.nextArrow} />
+                        </button>
                     </li>
                 )}
             </ul>
