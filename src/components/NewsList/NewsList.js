@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import styles from "./NewsList.module.css";
@@ -20,6 +20,10 @@ const NewsList = () => {
     const indexOfLastCard = currentPage * newsPerPage;
     const indexOfFirstCard = indexOfLastCard - newsPerPage;
     const currentCards = cards.slice(indexOfFirstCard, indexOfLastCard);
+
+    useEffect(() => {
+        window.scrollTo({ behavior: "smooth", top: "0px" });
+    }, [currentPage]);
 
     return (
         <React.Fragment>
