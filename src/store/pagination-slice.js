@@ -5,7 +5,8 @@ const paginationSlice = createSlice({
     initialState: {
         currentPage: 1,
         dataLimit: 10,
-        totalCount: 0
+        totalCount: 0,
+        siblingCount: 1
     },
     reducers: {
         setCount(state, action) {

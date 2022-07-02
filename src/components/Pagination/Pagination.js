@@ -11,7 +11,7 @@ const Pagination = () => {
     const currentPage = useSelector((state) => state.pagination.currentPage);
     const pageSize = useSelector((state) => state.pagination.dataLimit);
     const totalCount = useSelector((state) => state.pagination.totalCount);
-    const siblingCount = 1;
+    const siblingCount = useSelector((state) => state.pagination.siblingCount);
 
     const paginationRange = usePagination({
         totalCount,
