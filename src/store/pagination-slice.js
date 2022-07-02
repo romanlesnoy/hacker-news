@@ -13,6 +13,10 @@ const paginationSlice = createSlice({
         },
         setPage(state, action) {
             state.currentPage = action.payload;
+        },
+        resetState(state) {
+            state.currentPage = 1;
+            state.totalCount = 0;
         }
     }
 });

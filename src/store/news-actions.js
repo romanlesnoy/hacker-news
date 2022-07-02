@@ -16,6 +16,7 @@ export const fetchNews = () => {
     return async (dispatch, getState) => {
         try {
             dispatch(newsActions.resetNews());
+            dispatch(paginationActions.resetState());
             const notification = getState().error.notification;
             if (notification) {
                 dispatch(errorActions.resetNotification());
