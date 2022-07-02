@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { paginationActions } from "../../store/pagination-slice";
 
 import styles from "./Pagination.module.css";
-import Arrow from "../Icon/Icon";
+import ArrowIcon from "../ArrowIcon/ArrowIcon";
 import { usePagination, DOTS } from "../../hooks/usePagination";
 
 const Pagination = () => {
@@ -49,7 +49,7 @@ const Pagination = () => {
                             onClick={goToPreviousPage}
                             aria-label="Previous Page"
                         >
-                            <Arrow className={styles.backArrow} />
+                            <ArrowIcon className={styles.backArrow} />
                         </button>
                     </li>
                 ) : null}
@@ -83,7 +83,7 @@ const Pagination = () => {
                             onClick={goToNextPage}
                             aria-label="Next Page"
                         >
-                            <Arrow className={styles.nextArrow} />
+                            <ArrowIcon className={styles.nextArrow} />
                         </button>
                     </li>
                 )}

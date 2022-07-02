@@ -1,6 +1,6 @@
 import React from "react";
 
-const Arrow = (props) => {
+const ArrowIcon = (props) => {
     return (
         <svg
             width="50"
@@ -20,4 +20,4 @@ const Arrow = (props) => {
     );
 };
 
-export default Arrow;
+export default React.memo(ArrowIcon);
