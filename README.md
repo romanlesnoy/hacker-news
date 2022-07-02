@@ -61,7 +61,7 @@
     $ git clone https://github.com/romanlesnoy/hacker-news.git
 ```
 
-Перейти в директорию проекта и установить записимости
+Перейти в директорию проекта и установить зависимости
 
 ```bash
 $ cd hacker-news && npm install
