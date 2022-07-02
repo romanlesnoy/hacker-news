@@ -4,22 +4,32 @@ import { paginationActions } from "../../store/pagination-slice";
 
 import styles from "./Pagination.module.css";
 import Button from "../Button/Button";
+import { usePagination, DOTS } from "../../hooks/usePagination";
 
 const Pagination = () => {
     const dispatch = useDispatch();
     const currentPage = useSelector((state) => state.pagination.currentPage);
-    const newsPerPage = useSelector((state) => state.pagination.dataLimit);
+    const pageSize = useSelector((state) => state.pagination.dataLimit);
     const totalCount = useSelector((state) => state.pagination.totalCount);
+    const siblingCount = 1;
 
-    const pageLimit = Math.ceil(totalCount / newsPerPage);
-    const pageNumbers = new Array(pageLimit).fill().map((_, idx) => 1 + idx);
+    const paginationRange = usePagination({
+        totalCount,
+        pageSize,
+        siblingCount,
+        currentPage
+    });
+
+    if (currentPage === 0 || paginationRange.length < 2) {
+        return null;
+    }
 
     function goToNextPage() {
         dispatch(paginationActions.setPage(currentPage + 1));
     }
 
     function goToPreviousPage() {
-        dispatch(paginationActions.setPage(currentPage + 1));
+        dispatch(paginationActions.setPage(currentPage - 1));
     }
 
     function changePage(event) {
@@ -27,20 +37,42 @@ const Pagination = () => {
         dispatch(paginationActions.setPage(pageNumber));
     }
 
+    let lastPage = paginationRange[paginationRange.length - 1];
+
     return (
         <nav>
             <ul className={styles.list}>
-                <li>
-                    <Button text="back" onClick={goToPreviousPage} />
-                </li>
-                {pageNumbers.map((page, index) => (
-                    <li key={index}>
-                        <Button onClick={changePage} text={page.toString()} />
+                {currentPage !== 1 ? (
+                    <li>
+                        <Button text="back" onClick={goToPreviousPage} />
                     </li>
-                ))}
-                <li>
-                    <Button text="next" onClick={goToNextPage} />
-                </li>
+                ) : null}
+
+                {paginationRange.map((pageNumber, index) => {
+                    if (pageNumber === DOTS) {
+                        return (
+                            <li key={index} className="pagination-item dots">
+                                &#8230;
+                            </li>
+                        );
+                    }
+
+                    return (
+                        <li key={index}>
+                            <Button
+                                onClick={changePage}
+                                text={pageNumber.toString()}
+                                disabled={pageNumber === currentPage}
+                            />
+                        </li>
+                    );
+                })}
+
+                {currentPage === lastPage ? null : (
+                    <li>
+                        <Button text="next" onClick={goToNextPage} />
+                    </li>
+                )}
             </ul>
         </nav>
     );
