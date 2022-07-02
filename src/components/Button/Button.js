@@ -8,6 +8,7 @@ const Button = (props) => {
         <button
             type={props.type || "button"}
             role={props.type || "none"}
+            disabled={props.disabled}
             className={styles.button}
             onClick={props.onClick}
         >
@@ -19,7 +20,8 @@ const Button = (props) => {
 Button.propTypes = {
     type: PropTypes.string,
     onClick: PropTypes.func,
-    text: PropTypes.string
+    text: PropTypes.string,
+    disabled: PropTypes.bool
 };
 
 export default React.memo(Button);
