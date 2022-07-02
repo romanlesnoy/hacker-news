@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 
 import styles from "./NewsList.module.css";
@@ -17,9 +17,11 @@ const NewsList = () => {
     const currentPage = useSelector((state) => state.pagination.currentPage);
     const newsPerPage = useSelector((state) => state.pagination.dataLimit);
 
-    const indexOfLastCard = currentPage * newsPerPage;
-    const indexOfFirstCard = indexOfLastCard - newsPerPage;
-    const currentCards = cards.slice(indexOfFirstCard, indexOfLastCard);
+    const currentCardsSlice = useMemo(() => {
+        const indexOfLastCard = currentPage * newsPerPage;
+        const indexOfFirstCard = indexOfLastCard - newsPerPage;
+        return cards.slice(indexOfFirstCard, indexOfLastCard);
+    }, [currentPage, cards, newsPerPage]);
 
     useEffect(() => {
         window.scrollTo({ behavior: "smooth", top: "0px" });
@@ -28,10 +30,10 @@ const NewsList = () => {
     return (
         <React.Fragment>
             {storiesAreLoading && <Preloader />}
-            {currentCards && (
+            {currentCardsSlice && (
                 <>
                     <ul className={styles.cardList}>
-                        {currentCards.map((story) => (
+                        {currentCardsSlice.map((story) => (
                             <NewsCard key={story.id} {...story} />
                         ))}
                     </ul>
