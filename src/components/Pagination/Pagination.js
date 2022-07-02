@@ -47,6 +47,7 @@ const Pagination = () => {
                         <button
                             className={styles.button}
                             onClick={goToPreviousPage}
+                            aria-label="Previous Page"
                         >
                             <Arrow className={styles.backArrow} />
                         </button>
@@ -80,6 +81,7 @@ const Pagination = () => {
                         <button
                             className={styles.button}
                             onClick={goToNextPage}
+                            aria-label="Next Page"
                         >
                             <Arrow className={styles.nextArrow} />
                         </button>
