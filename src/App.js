@@ -1,9 +1,6 @@
 import React, { Suspense } from "react";
 import { Route, Switch } from "react-router-dom";
 
-// import MainPage from "./pages/MainPage/MainPage";
-// import ArticlePage from "./pages/ArticlePage/ArticlePage";
-// import NotFound from "./pages/NotFound/NotFound";
 import Preloader from "./components/Preloader/Preloader";
 
 const MainPage = React.lazy(() => import("./pages/MainPage/MainPage"));
